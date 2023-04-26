@@ -1,9 +1,8 @@
 import plotly.express as px
 import pandas as pd
 import streamlit as st
-train = pd.read_csv(
-    '/Users/zoeyespinoza/Documents/GitHub/Sprint4_project/train.csv')
-test = pd.read_csv('/Users/zoeyespinoza/Documents/GitHub/Sprint4_project/test.csv')
+train = pd.read_csv(train.csv')
+test = pd.read_csv('test.csv')
 
 titanic_df = pd.merge(train, test, on='PassengerId', how='outer')
 titanic_df.to_csv('merged.csv', index=False)
@@ -24,8 +23,6 @@ fig_scatter = px.scatter(titanic_df, x="Age_x", y="Fare_x",
                          color="Survived",
                          title="Passenger Age vs. Fare")
 
-
-# Show the figures in the notebook
 fig_age.show()
 fig_fare.show()
 fig_scatter.show()
