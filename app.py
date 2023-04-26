@@ -1,5 +1,3 @@
-
-
 import plotly.express as px
 import pandas as pd
 import streamlit as st
@@ -18,7 +16,6 @@ fig_age = px.histogram(titanic_df, x="Age_x", nbins=20,
                        color="Survived",
                        title="Distribution of Passenger Age")
 
-
 fig_fare = px.histogram(titanic_df, x="Fare_x", nbins=20, 
                         color="Survived",
                         title="Distribution of Passenger Fares")
@@ -27,7 +24,11 @@ fig_scatter = px.scatter(titanic_df, x="Age_x", y="Fare_x",
                          color="Survived",
                          title="Passenger Age vs. Fare")
 
-fig_age.show()
-fig_fare.show()
-fig_scatter.show()
-
+if color_by_survival:
+    st.plotly_chart(fig_age, use_container_width=True)
+    st.plotly_chart(fig_fare, use_container_width=True)
+    st.plotly_chart(fig_scatter, use_container_width=True)
+else:
+    st.plotly_chart(fig_age.update_traces(marker_color='blue'), use_container_width=True)
+    st.plotly_chart(fig_fare.update_traces(marker_color='blue'), use_container_width=True)
+    st.plotly_chart(fig_scatter.update_traces(marker_color='blue'), use_container_width=True)
