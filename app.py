@@ -9,6 +9,7 @@ test = pd.read_csv('test.csv')
 
 titanic_df = pd.merge(train, test, on='PassengerId', how='outer')
 titanic_df.to_csv('merged.csv', index=False)
+titanic_df = titanic_df.dropna()
 
 st.header("Titanic Passenger Data")
 color_by_survival = st.checkbox("Color by Survival")
