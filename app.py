@@ -10,7 +10,7 @@ titanic_df.to_csv('merged.csv', index=False)
 titanic_df['Age'].fillna(titanic_df['Age'].median(), inplace=True)
 titanic_df = titanic_df.dropna()
 duplicates = titanic_df.duplicated()
-display(duplicates.sum())
+(duplicates.sum())
 titanic_df.info()
 
 st.header("Titanic Passenger Data")
@@ -20,11 +20,11 @@ fig_age = px.histogram(titanic_df, x="Age_x", nbins=20,
                        color="Survived",
                        title="Distribution of Passenger Age")
 
-fig_fare = px.histogram(titanic_df, x="Fare_x", nbins=20, 
+fig_fare = px.histogram(titanic_df, x="Fare_x", nbins=20,
                         color="Survived",
                         title="Distribution of Passenger Fares")
 
-fig_scatter = px.scatter(titanic_df, x="Age_x", y="Fare_x", 
+fig_scatter = px.scatter(titanic_df, x="Age_x", y="Fare_x",
                          color="Survived",
                          title="Passenger Age vs. Fare")
 
@@ -33,6 +33,9 @@ if color_by_survival:
     st.plotly_chart(fig_fare, use_container_width=True)
     st.plotly_chart(fig_scatter, use_container_width=True)
 else:
-    st.plotly_chart(fig_age.update_traces(marker_color='blue'), use_container_width=True)
-    st.plotly_chart(fig_fare.update_traces(marker_color='blue'), use_container_width=True)
-    st.plotly_chart(fig_scatter.update_traces(marker_color='blue'), use_container_width=True)
+    st.plotly_chart(fig_age.update_traces(
+        marker_color='blue'), use_container_width=True)
+    st.plotly_chart(fig_fare.update_traces(
+        marker_color='blue'), use_container_width=True)
+    st.plotly_chart(fig_scatter.update_traces(
+        marker_color='blue'), use_container_width=True)
