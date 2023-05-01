@@ -16,15 +16,15 @@ titanic_df.info()
 st.header("Titanic Passenger Data")
 color_by_survival = st.checkbox("Color by Survival")
 
-fig_age = px.histogram(titanic_df, x="Age_x", nbins=20,
+fig_age = px.histogram(titanic_df, x="Age", nbins=20,
                        color="Survived",
                        title="Distribution of Passenger Age")
 
-fig_fare = px.histogram(titanic_df, x="Fare_x", nbins=20,
+fig_fare = px.histogram(titanic_df, x="Fare", nbins=20,
                         color="Survived",
                         title="Distribution of Passenger Fares")
 
-fig_scatter = px.scatter(titanic_df, x="Age_x", y="Fare_x",
+fig_scatter = px.scatter(titanic_df, x="Age", y="Fare",
                          color="Survived",
                          title="Passenger Age vs. Fare")
 
