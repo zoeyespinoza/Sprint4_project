@@ -5,9 +5,13 @@ import streamlit as st
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 
-titanic_df = pd.merge(train, test, on='PassengerId', how='outer')
+titanic_df = pd.concat([train, test], axis=0, ignore_index=True)
 titanic_df.to_csv('merged.csv', index=False)
+titanic_df['Age'].fillna(titanic_df['Age'].median(), inplace=True)
 titanic_df = titanic_df.dropna()
+duplicates = titanic_df.duplicated()
+display(duplicates.sum())
+titanic_df.info()
 
 st.header("Titanic Passenger Data")
 color_by_survival = st.checkbox("Color by Survival")
